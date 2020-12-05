@@ -1,11 +1,8 @@
-# php-aes-128-cbc-encryption
+# php-aes-cbc-encryption
 
 Author: Elie Koo
 
-
 Created at: 1 Dec 2020
-
-
 
 
 -Pass Data in json format
@@ -21,10 +18,6 @@ Created at: 1 Dec 2020
 
 
 Reference: openssl_encrypt() parameters https://www.php.net/manual/en/function.openssl-encrypt.php
-
-``` ( string $data , string $method , string $key [, int $options = 0 [, string $iv = "" [, string &$tag = NULL [, string $aad = "" [, int $tag_length = 16 ]]]]] ) : string|false
-
-```
 
 Parameters
 data
@@ -53,5 +46,9 @@ The length of the authentication tag. Its value can be between 4 and 16 for GCM 
 
 ```
 example:
-$ciphertext_raw = openssl_encrypt($data, "AES-128-CBC", $key, OPENSSL_RAW_DATA, $iv);
+$example_128 = openssl_encrypt($data, "AES-128-CBC", $key, OPENSSL_RAW_DATA, $iv);
+
+
+$example_256 = openssl_encrypt($data, 'AES-256-CBC', $key, OPENSSL_RAW_DATA | OPENSSL_ZERO_PADDING, $iv);
+
 ```

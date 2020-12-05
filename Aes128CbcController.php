@@ -3,7 +3,7 @@
 
 use Illuminate\Http\Request;
 
-class MyController
+class Aes128CbcController
 {
 
 	public $current_version = 1;
