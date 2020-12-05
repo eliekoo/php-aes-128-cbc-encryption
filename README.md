@@ -1,20 +1,31 @@
 # php-aes-128-cbc-encryption
 
 Author: Elie Koo
+
+
 Created at: 1 Dec 2020
 
+
+
+
 -Pass Data in json format
+
 -Use HashKey and HashIV for AES encryption.
+
 -HashIV key is 16 bytes.
+
 -AES encryption strength setting mode is 128 bit (can be 256 bit), CipherMode:CBC, PaddingMode:PKCS7
+
 -openssl_encrypt() already does PKCS#7 padding
 
 
 
 Reference: openssl_encrypt() parameters https://www.php.net/manual/en/function.openssl-encrypt.php
-----------------------------
-```openssl_encrypt ( string $data , string $method , string $key [, int $options = 0 [, string $iv = "" [, string &$tag = NULL [, string $aad = "" [, int $tag_length = 16 ]]]]] ) : string|false
--------------------------------------
+
+``` openssl_encrypt ( string $data , string $method , string $key [, int $options = 0 [, string $iv = "" [, string &$tag = NULL [, string $aad = "" [, int $tag_length = 16 ]]]]] ) : string|false
+
+```
+```
 example:
 $ciphertext_raw = openssl_encrypt($data, "AES-128-CBC", $key, OPENSSL_RAW_DATA, $iv);
 ```
