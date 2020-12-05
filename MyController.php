@@ -44,7 +44,7 @@ class MyController
 		return $enc_result;
 	}
 
-	public static function DecryptAesCBC($data, $key, $iv) 
+	protected static function DecryptAesCBC($data, $key, $iv) 
 	{	
 		// Use HashKey and HashIV for AES encryption.
     	// Data in json format
