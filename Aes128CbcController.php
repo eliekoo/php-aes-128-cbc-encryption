@@ -10,10 +10,10 @@ class Aes128CbcController
 
 	public function encodeParamsData(Request $request){
 
-		// Example input: {"Data":{"id": "1111", "name":"John"},"HashKey":"test123456789000","HashIV":"000987654321test"}
+		// Example input: {"Data":{"id": "1111", "name":"John"},"SecretKey":"test123456789000","SecretIV":"000987654321test"}
 		$input = $request->all();
 		
-		$enc_requestData = $this->EncryptAesCBC(json_encode($input['Data']), $input['HashKey'], $input['HashIV']);
+		$enc_requestData = $this->EncryptAesCBC(json_encode($input['Data']), $input['SecretKey'], $input['SecretIV']);
 
 		// example encryptedData: "ZgvJXiuzzjKXiejvUZgHXqtIq7YRbPnO+UDUYvyZ0+w="
 		return $enc_requestData;
@@ -21,10 +21,10 @@ class Aes128CbcController
 
 	public function decodeParamsData(Request $request){
 
-		// Example input: {"EncryptedData":"ZgvJXiuzzjKXiejvUZgHXqtIq7YRbPnO+UDUYvyZ0+w=","HashKey":"test123456789000","HashIV":"000987654321test"}
+		// Example input: {"EncryptedData":"ZgvJXiuzzjKXiejvUZgHXqtIq7YRbPnO+UDUYvyZ0+w=","SecretKey":"test123456789000","SecretIV":"000987654321test"}
 		$input = $request->all();
 
-		$dec_responseData = $this->DecryptAesCBC($input['EncryptedData'], $input['HashKey'], $input['HashIV']);
+		$dec_responseData = $this->DecryptAesCBC($input['EncryptedData'], $input['SecretKey'], $input['SecretIV']);
 
 		// Example decryptedData: {"id":"1111","name":"John"}
 		return $dec_responseData;
@@ -32,7 +32,7 @@ class Aes128CbcController
 
 	protected function EncryptAesCBC($data, $key, $iv) 
 	{
-    	// Use HashKey and HashIV for AES encryption.
+    	// Use SecretKey and SecretIV for AES encryption.
     	// Data in json format
     	// AES encryption strength setting mode is 128 bit , CipherMode:CBC, PaddingMode:PKCS7
     	// openssl_encrypt() already does PKCS#7 padding
@@ -46,7 +46,7 @@ class Aes128CbcController
 
 	protected static function DecryptAesCBC($data, $key, $iv) 
 	{	
-		// Use HashKey and HashIV for AES encryption.
+		// Use SecretKey and SecretIV for AES encryption.
     	// Data in json format
 		// AES encryption strength setting mode is 128 bit , CipherMode:CBC, PaddingMode:PKCS7
     	// openssl_decrypt() will removes PKCS#7 padding

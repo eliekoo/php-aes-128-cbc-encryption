@@ -10,10 +10,10 @@ class Aes256CbcController
 
 	public function encodeParamsData(Request $request){
 
-		// Example input: {"Data":{"id": "1111", "name":"John"},"HashKey":"test123456789000","HashIV":"000987654321test"}
+		// Example input: {"Data":{"id": "1111", "name":"John"},"SecretKey":"test123456789000","SecretIV":"000987654321test"}
 		$input = $request->all();
 		
-		$enc_requestData = $this->EncryptAesCBC(json_encode($input['Data']), $input['HashKey'], $input['HashIV']);
+		$enc_requestData = $this->EncryptAesCBC(json_encode($input['Data']), $input['SecretKey'], $input['SecretIV']);
 
 		// example encryptedData: "2D517F805B2A2E91D2BCFA39147F31F735528B18E586BBF4F7D4579700E78181"
 		return $enc_requestData;
@@ -21,10 +21,10 @@ class Aes256CbcController
 
 	public function decodeParamsData(Request $request){
 
-		// Example input: {"EncryptedData":"2D517F805B2A2E91D2BCFA39147F31F735528B18E586BBF4F7D4579700E78181","HashKey":"test123456789000","HashIV":"000987654321test"}
+		// Example input: {"EncryptedData":"2D517F805B2A2E91D2BCFA39147F31F735528B18E586BBF4F7D4579700E78181","SecretKey":"test123456789000","SecretIV":"000987654321test"}
 		$input = $request->all();
 
-		$dec_responseData = $this->DecryptAesCBC($input['EncryptedData'], $input['HashKey'], $input['HashIV']);
+		$dec_responseData = $this->DecryptAesCBC($input['EncryptedData'], $input['SecretKey'], $input['SecretIV']);
 
 		// Example decryptedData: {"id":"1111","name":"John"}
 		return $dec_responseData;

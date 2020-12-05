@@ -7,9 +7,9 @@ Created at: 1 Dec 2020
 
 -Pass Data in json format
 
--Use HashKey and HashIV for AES encryption.
+-Use SecretKey and SecretIV for AES encryption.
 
--HashIV key is 16 bytes.
+-SecretIV key is 16 bytes.
 
 -AES encryption strength setting mode is 128 bit (can be 256 bit), CipherMode:CBC, PaddingMode:PKCS7
 
